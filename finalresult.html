@@ -267,6 +267,14 @@
     </style>
 </head>
 <body>
+<div id="sectionHelpModal" class="help-modal-overlay">
+    <div class="help-modal-card">
+        <h3 id="sectionHelpTitle" style="margin-top: 0; color: #3182ce; font-size: 18px; border-bottom: 2px solid #cbd5e0; padding-bottom: 8px;">說明</h3>
+        <div id="sectionHelpContent" style="font-size: 14px; line-height: 1.6; color: #2d3748; max-height: 300px; overflow-y: auto; text-align: left;"></div>
+        <button type="button" onclick="closeSectionHelp()" style="margin-top: 15px; padding: 8px 16px; font-size: 13px; width: 100%;">確認</button>
+    </div>
+</div>
+
 <div id="ffHelpModal" class="help-modal-overlay">
     <div class="help-modal-card">
         <h3 id="txt-modalTitle" style="margin-top: 0; color: #3182ce; font-size: 18px; border-bottom: 2px solid #cbd5e0; padding-bottom: 8px;">觸發器方程式代號意義</h3>
@@ -313,7 +321,10 @@
     <div class="main-layout">
         <div class="left-panel">
             <div class="card" id="card-spec">
-                <h2 id="txt-cardSpec">系統規格設定</h2>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                    <h2 id="txt-cardSpec" style="margin: 0;">系統規格設定</h2>
+                    <button type="button" class="sub-toggle-btn" onclick="showSectionHelp('spec')" style="padding: 4px 10px; font-size: 12px; width: auto; margin: 0;">說明</button>
+                </div>
                 <div class="form-group" id="group-text-input">
                     <label id="txt-descLabel">題目敘述輸入 (Problem Description)</label>
                     <textarea id="problemDesc" rows="4" style="width: 95%; background: var(--card-bg); color: var(--text-color); border: 1px solid var(--border-color); padding: 8px; border-radius: 4px; font-family: inherit; resize: vertical;" placeholder="例如：設計一個 Mealy 模型，使用 JK 觸發器，包含 3 個狀態..."></textarea>
@@ -349,7 +360,10 @@
             </div>
 
             <div class="card" id="card-state-table">
-                <h2 id="txt-cardTable">狀態表</h2>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                    <h2 id="txt-cardTable" style="margin: 0;">狀態表</h2>
+                    <button type="button" class="sub-toggle-btn" onclick="showSectionHelp('table')" style="padding: 4px 10px; font-size: 12px; width: auto; margin: 0;">說明</button>
+                </div>
                 <div id="tableWrapper"></div>
                 <div class="btn-container" style="display: flex; gap: 10px; margin-top: 15px;">
                     <button type="button" onclick="triggerManualAnalysis()" id="txt-analyzeBtn" style="flex: 1;">執行分析與生成電路</button>
@@ -360,22 +374,34 @@
 
         <div class="right-panel">
             <div class="card" id="card-equations" style="border-left: 5px solid var(--primary-color);">
-                <h2 id="txt-cardEquations">觸發器輸入方程式化簡總覽</h2>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                    <h2 id="txt-cardEquations" style="margin: 0;">觸發器輸入方程式化簡總覽</h2>
+                    <button type="button" class="sub-toggle-btn" onclick="showSectionHelp('equations')" style="padding: 4px 10px; font-size: 12px; width: auto; margin: 0;">說明</button>
+                </div>
                 <div id="equationsTableWrapper" style="margin-top: 15px;"></div>
             </div>
 
             <div class="card" id="card-kmap">
-                <h2 id="txt-cardKmap">卡諾圖生成與最簡化布林運算式</h2>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                    <h2 id="txt-cardKmap" style="margin: 0;">卡諾圖生成與最簡化布林運算式</h2>
+                    <button type="button" class="sub-toggle-btn" onclick="showSectionHelp('kmap')" style="padding: 4px 10px; font-size: 12px; width: auto; margin: 0;">說明</button>
+                </div>
                 <div id="kmapsWrapper" class="kmap-container"></div>
             </div>
 
             <div class="card" id="card-state-diagram">
-                <h2 id="txt-cardStateDiag">狀態轉移圖</h2>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                    <h2 id="txt-cardStateDiag" style="margin: 0;">狀態轉移圖</h2>
+                    <button type="button" class="sub-toggle-btn" onclick="showSectionHelp('diagram')" style="padding: 4px 10px; font-size: 12px; width: auto; margin: 0;">說明</button>
+                </div>
                 <div id="stateDiagWrapper" style="overflow-x: auto; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 6px; padding: 10px;"></div>
             </div>
 
             <div class="card" id="card-simulation">
-                <h2 id="txt-cardSim">時序追蹤模擬測試</h2>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                    <h2 id="txt-cardSim" style="margin: 0;">時序追蹤模擬測試</h2>
+                    <button type="button" class="sub-toggle-btn" onclick="showSectionHelp('sim')" style="padding: 4px 10px; font-size: 12px; width: auto; margin: 0;">說明</button>
+                </div>
                 <div class="form-group" style="margin-top: 10px;">
                     <label id="txt-simXInput" style="font-weight: bold;">請輸入序列 x 進行硬體演進測試 (例如: 01111111011011101):</label>
                     <input type="text" id="simXSequence" value="01111111011011101" style="width: 95%; font-family: monospace; font-size:15px; margin-top:5px;" oninput="runTraceSimulation()">
@@ -387,7 +413,10 @@
             <div class="card" id="card-circuit">
                 <div class="card-header-flex">
                     <h2 id="txt-cardCircuit">序向邏輯電路圖</h2>
-                    <button type="button" id="btn-toggleSignals" class="sub-toggle-btn" onclick="toggleSignalText()">切換公式顯示</button>
+                    <div style="display: flex; gap: 8px;">
+                        <button type="button" class="sub-toggle-btn" onclick="showSectionHelp('circuit')" style="padding: 4px 10px; font-size: 12px; width: auto; margin: 0;">說明</button>
+                        <button type="button" id="btn-toggleSignals" class="sub-toggle-btn" style="padding: 4px 10px; font-size: 12px; width: auto; margin: 0;" onclick="toggleSignalText()">切換公式顯示</button>
+                    </div>
                 </div>
                 <div class="circuit-container" id="circuitWrapper"></div>
             </div>
@@ -489,30 +518,30 @@
 
                 setTimeout(() => {
                     const rect = targetEl.getBoundingClientRect();
-                    const cardWidth = 360; 
+                    const cardWidth = 350; 
+                    const cardHeight = card.offsetHeight || 240;
                     
-                    let fixedTop = rect.top + (rect.height / 2) - 110; 
+                    // 恆定保持在 y = 0 的原點位置（即視窗垂直中央點）
+                    let fixedTop = (window.innerHeight / 2) - (cardHeight / 2); 
                     let fixedLeft = 0;
 
+                    // 智慧型 X 座標對齊與防撞避讓
                     if (index >= 1 && index <= 4) {
                         fixedLeft = rect.right + 20; 
-                        if (fixedLeft + cardWidth > window.innerWidth - 20) {
-                            fixedLeft = window.innerWidth - cardWidth - 20;
-                        }
                     } else {
-                        fixedLeft = rect.left - cardWidth - 40;
-                        fixedTop = rect.top - 60;
+                        fixedLeft = rect.left - cardWidth - 75;
                     }
 
                     if (window.innerWidth < 1100) {
-                        fixedLeft = window.innerWidth / 2 - (cardWidth / 2);
-                        fixedTop = window.innerHeight - 230; 
+                        fixedLeft = (window.innerWidth / 2) - (cardWidth / 2);
                     }
 
-                    if (fixedTop < 20) fixedTop = 20;
-                    if (fixedTop + 240 > window.innerHeight) fixedTop = window.innerHeight - 260;
-                    if (fixedLeft < 10) fixedLeft = 10;
-                    if (fixedLeft + cardWidth > window.innerWidth - 10) fixedLeft = window.innerWidth - cardWidth - 10;
+                    if (fixedLeft < 10) {
+                        fixedLeft = 10;
+                    }
+                    if (fixedLeft + cardWidth > window.innerWidth - 10) {
+                        fixedLeft = window.innerWidth - cardWidth - 10;
+                    }
 
                     card.style.position = "fixed";
                     card.style.top = fixedTop + "px";
@@ -524,7 +553,7 @@
             overlay.style.display = "flex";
             overlay.style.pointerEvents = "auto";
             card.style.position = "static";
-            card.style.margin = "auto";
+            card.margin = "auto";
         }
     };
 
@@ -867,7 +896,7 @@
                 else if(ffType === 'SR') { kmapsData['S_1'].push(ex1[0]); kmapsData['R_1'].push(ex1[1]); kmapsData['S_2'].push(ex2[0]); kmapsData['R_2'].push(ex2[1]); } 
                 else if(ffType === 'T') { kmapsData['T_1'].push(ex1[0]); kmapsData['T_2'].push(ex2[0]); }
                 else if(ffType === 'D') { kmapsData['D_1'].push(ex1[0]); kmapsData['D_2'].push(ex2[0]); }
-            } else { 
+            } else {
                 let ex1 = getExcitation(q1, nq1); let ex2 = getExcitation(q2, nq2); let ex3 = getExcitation(q3, nq3);
                 if(ffType === 'JK') { 
                     kmapsData['J_1'].push(ex1[0]); kmapsData['K_1'].push(ex1[1]); kmapsData['J_2'].push(ex2[0]); kmapsData['K_2'].push(ex2[1]); kmapsData['J_3'].push(ex3[0]); kmapsData['K_3'].push(ex3[1]); 
@@ -1410,7 +1439,6 @@
             }
         }
         
-        // 🛠️ 關鍵修復點：精確補回缺失的 cContainer DOM 容器變數宣告，徹底瓦解 ReferenceError 當機核心
         let cContainer = document.getElementById('circuitWrapper');
         cContainer.style.position = 'relative'; cContainer.style.overflow = 'hidden'; cContainer.style.cursor = 'grab';
         let cControls = `
@@ -1510,6 +1538,51 @@
             }
         }
         initStateTable();
+    };
+
+    // 新增：處理 7 大 Section 的專業說明原理知識庫路由與顯示
+    window.showSectionHelp = function(sectionKey) {
+        const helpData = {
+            'spec': {
+                title: '系統規格設定 — 核心功能原理',
+                content: '<p><b>系統規格設定</b>：此區塊用來定義有限狀態機（FSM）的基礎硬體架構。</p><p>• <b>題目敘述輸入</b>：支援模糊語意識別，輸入任意大小寫英文或中文字，能自動設定選項。<br>• <b>系統模型類型</b>：可切換 <b>Moore模型</b>（電路總輸出僅與目前狀態有關，訊號最穩定）或 <b>Mealy模型</b>（輸出由目前狀態與當前外部輸入 x 共同決定，對訊號反應最敏捷）。<br>• <b>觸發器類型</b>：選擇底層儲存二進制記憶（0 or 1）的核心正反器細胞。<br>• <b>狀態數量</b>：決定電路包含的有效狀態個數。狀態越多，所需的正反器數量 n 越多（滿足 2ⁿ ≥ 狀態數）。</p>'
+            },
+            'table': {
+                title: '狀態表 (State Table) — 運作規則定義',
+                content: '<p><b>狀態表</b>：是描述同步序向邏輯電路演進軌跡與輸出行為的數學核心規約表格。</p><p>• <b>目前狀態 (Present State)</b>：代表晶片當前時脈週期內所處的記憶狀態（以代號 A, B, C... 表示）。<br>• <b>次狀態 (Next State)</b>：當下一個時脈觸發沿（Clock Edge）到來時，依據外部輸入訊號 x=0 或 x=1 的指引，晶片即將跳轉過去目的地狀態。<br>• <b>輸出 (z)</b>：電路此刻在各特定狀態與輸入下應發送出的高低電平結果。你可以點擊選單自由修改邏輯規則，系統將實時重新化簡整個硬體。</p>'
+            },
+            'equations': {
+                title: '激勵方程式 (Excitation Equations) — 化簡總覽',
+                content: '<p><b>輸入方程式總覽</b>：這裡呈現了為了驅動各正反器跳轉到正確次狀態所需的最終簡化布林表達式。</p><p>• 系統會根據你選擇的正反器型態，依據其專屬的<b>應用表（Excitation Table）</b>將狀態表的轉移關係編碼為二進制激勵值。<br>• 透過卡諾圖最大化項圈選化簡後，將各正反器輸入引腳（如 J, K, D, T, S, R）以及系統總輸出 z 的最簡<b>乘積項之和 (SOP)</b> 完整列出，此即實體電路焊接與排線的最終依據。</p>'
+            },
+            'kmap': {
+                title: '卡諾圖 (K-Map) — 面積最簡化剪枝引擎',
+                content: '<p><b>卡諾圖</b>：是數位邏輯中用來將布林代數化簡到最省電、最省晶片面積的幾何矩陣工具。</p><p>• 系統會根據電路變數自動繪製符合<b>格雷碼 (Gray Code)</b> 相鄰項特性的二維或三維卡諾圖，相鄰格之間每次只有一個二進制位元發生變化。<br>• 表格中的 0、1 代表轉移關係的實體布林值，<b>X 代表未使用的隨意項 (Don\'t Care)</b>。系統在化簡時會用演算法自動判斷，將 X 視為 1 進行最大化圈選，或視為 0 排除，以達到電路結構最極致的剪枝與精簡項之效果。</p>'
+            },
+            'diagram': {
+                title: '狀態轉移圖 (State Diagram) — 有限狀態機視覺化',
+                content: '<p><b>狀態轉移圖</b>：有限狀態機（FSM）行為的直觀圖形化幾何呈現。</p><p>• <b>狀態節點</b>：圓圈代表狀態。若是 Moore 模型，圓圈內會同步標註該狀態的固定輸出（如 A/0）；Mealy 模型則僅標註狀態名稱。<br>• <b>跳轉路徑</b>：帶箭頭的有向曲線代表訊號觸發軌跡。<b>藍色線代表外部輸入 x=0</b>，<b>綠色線代表外部輸入 x=1</b>。<br>• <b>高防撞互動</b>：滑鼠懸停於圓圈上時，該節點的自繞路徑、文字標籤與雙向弧線會同步加粗亮起，並將目的地節點以紅色虛線框提示，十分便於學術演講與展示。</p>'
+            },
+            'sim': {
+                title: '時序追蹤模擬測試 (Timing Trace) — 實體通電演進',
+                content: '<p><b>時序模擬追蹤</b>：這是通電後的實體功能模擬除錯器，用來驗證硬體邏輯在連續時間軸上的正確性。</p><p>• <b>初始狀態設定</b>：可以在上方的狀態轉移圖中，直接用滑鼠點擊任意圓圈來指定晶片開機的起點狀態。<br>• <b>時序軌跡推演</b>：在輸入框輸入連續的二進制碼（如 0111101），下方會立刻模擬連續時脈（Clock）脈衝的到來，精確秀出每一刻大腦記憶細胞內部暫存器（q1, q2, q3）編碼值與總輸出 z 的即時動態演進軌跡。</p>'
+            },
+            'circuit': {
+                title: '序向邏輯電路圖 — 終極自動拓撲佈線藍圖',
+                content: '<p><b>序向邏輯電路圖</b>：這是系統自動計算並繪製出的最終實體電子晶片排線藍圖。</p><p>• <b>輸入與時脈軌</b>：最左側為外部輸入訊號 x 與反向器產生的 x\' 垂直母線；垂直中斷的黑虛線為同步時脈（Clock）脈衝線。<br>• <b>邏輯閘陣列</b>：包含負責執行交集積項運算的與閘（AND Gates）與聯集和項運算的或閘（OR Gates）。<br>• <b>記憶核心</b>：右側為實體正反器方塊，其輸出端 q 與 q\' 會自動拉回左側垂直軌進行反饋（Feedback）閉環，構成完整的同步序向系統。支援畫布滑鼠拖拽與滾輪無級縮放。</p>'
+            }
+        };
+
+        const data = helpData[sectionKey];
+        if (data) {
+            document.getElementById("sectionHelpTitle").innerHTML = data.title;
+            document.getElementById("sectionHelpContent").innerHTML = data.content;
+            document.getElementById("sectionHelpModal").style.display = "flex";
+        }
+    };
+
+    window.closeSectionHelp = function() {
+        document.getElementById("sectionHelpModal").style.display = "none";
     };
 
     window.showFFHelp = function() { document.getElementById("ffHelpModal").style.display = "flex"; };
